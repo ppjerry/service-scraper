@@ -1,6 +1,6 @@
 ## 流程
 
-我们主要采用 PR(Pull Request) 的模式来开发，首先我们按如下步骤 Step By Step 来操作
+我们主要采用 PR(Pull Request) 的模式来开发，按如下 Step By Step 来操作
 
 ### Fork 项目
 
@@ -18,13 +18,13 @@
 
 ### Fork 成功
 
-这个时候，你看到地址栏的地址变成了 https://github.com/${你的账号}/service-scraper， 如下图
+你看到地址栏的地址变成了 https://github.com/${你的账号}/service-scraper， 如下图
 
 ![Forked](/dist/images/02-forked.png)
 
 ### Clone 代码到本地
 
-这个时候你就可以 Clone 代码到本地进行开发了，按钮如下
+你就可以 Clone 代码到本地进行开发了，按钮如下
 
 ![Clone](/dist/images/03-clone.png)
 
@@ -49,6 +49,12 @@ Git for windows从这里下载
 如果你想专业一点，那么就打开你的 Terminal 使用 git clone 获取代码
 
 ```
+git clone git://github.com/${你的账号}/service-scraper
+```
+
+或者
+
+```
 git clone https://github.com/${你的账号}/service-scraper
 ```
 
@@ -63,7 +69,7 @@ git clone https://github.com/${你的账号}/service-scraper
 当然还有一些重量级工具，如
 
 * Pycharm (收费软件，注册机自行寻找)
-* Eclipse (有基于 Eclise 做的插件，随意 install 一个支持 Python 插件即可)
+* Eclipse (有基于 Eclise 做的插件，install 一个支持 Python 插件即可)
 
 ### 编写代码
 
@@ -116,3 +122,12 @@ git push
 
 ![提示 PR](/dist/images/05-pr-05.png)
 
+
+### 更多资料
+
+* Git 快速入门： https://segmentfault.com/a/1190000000725599
+* GitHub 快速入门-Git教程: http://www.jianshu.com/p/242ca1409b00
+* Git 入门 PPT: http://rogerdudler.github.io/git-guide/index.zh.html
+* Git教程: https://lvwzhen.gitbooks.io/git-tutorial/content/
+
+网站资源很多，检索能找到很多的
