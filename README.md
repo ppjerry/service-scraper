@@ -1,109 +1,118 @@
-# Scraper Service
+## 流程
 
-## Version 1.0
+我们主要采用 PR(Pull Request) 的模式来开发，首先我们按如下步骤 Step By Step 来操作
 
-### 数据模型
+### Fork 项目
 
-第一版本，我们只使用 File 来存储数据，将重点放在网络和文件处理上
+访问项目地址：https://github.com/sjtu-cs/service-scraper 点击右方的 Fork 按钮，如下图
 
-主要结构包括如下：
+![Fork 代码](/dist/images/00-fork.png)
 
-#### 图书分类/Category
+### 选择组织
 
-* name 分类名称
+如果你有组织，会提示选择哪个组织或个人账号
 
+![Choose Org](/dist/images/01-choose-group.png)
 
-#### 图书信息/Book
+请选择个人账号。如果没有，则直接 Fork成功。
 
-* name 图书名称
-* cover 封面
-* author 作者
-* word_count 字数
-* last_updat_time 最后更新时间 （可选）
-* last_update_chapter 最后更新章节 （可选）
-* desc 简介
-* tags 标签
+### Fork 成功
 
+这个时候，你看到地址栏的地址变成了 https://github.com/${你的账号}/service-scraper， 如下图
 
-#### 图书资源/BookResource （可选）
+![Forked](/dist/images/02-forked.png)
 
-* name 资源名称
-* url 资源网址
-* category 资源网址对应分类
-* last_updat_time 资源网址对应最后更新时间 （可选）
-* last_update_chapter 资源网址对应最后更新章节 （可选）
+### Clone 代码到本地
 
+这个时候你就可以 Clone 代码到本地进行开发了，按钮如下
 
-#### 图书章节/Chapter
+![Clone](/dist/images/03-clone.png)
 
-* name 名称
-* word_count 字数
+Clone 代码有两种方式协议，即分别如下：
 
+* SSH
+* HTTPS
 
-#### 图书章节正文/ChapterContent
+推荐所有非 Win 的用户采用 SSH，Win 的用户随意，如果搞不定 SSH，就采用 HTTPS 协议。
 
-* content 正文
+Git for windows从这里下载
 
+* https://git-for-windows.github.io/
+* https://git-scm.com/download/win
 
-***在第一版本中，忽略不同源的概念，只要能抓取到章节内容即可***
+随意，用你喜欢的就好，如第一个。
 
-### 元数据结构
+安装成功后，如果你对命令行不熟悉或不想看的话，可以进一步下载客户端，如：https://desktop.github.com/
 
-因为我们第一版本不适用 DB，所以需要自己先设计一套元数据：
+如果安装这个成功后，点击上面截图中的 Clone or download 会显示 Open in Desktop，就是调用这个客户端。
 
-文件目录结构如下：
+如果你想专业一点，那么就打开你的 Terminal 使用 git clone 获取代码
 
 ```
-books/
-  {category_id}/ # 分类 ID 作为目录
-    .meta #目录对应的信息，如名称等
+git clone https://github.com/${你的账号}/service-scraper
+```
 
-    {book_id}/ # 图书 ID 作为目录
-      .meta #本书对应的元数据信息
-      cover.jpg/png... #图书封面
-      {chapter_1}.txt  #正文
-      {chapter_2}.txt
-      {chapter_3}.txt
-      {chapter_4}.txt
-      ...
-      ...
+### 选择你喜欢的开发工具
+
+获取成功后，切换到 service-scraper，用你喜欢的编辑器打开它即可。推荐一些编辑器，如：
+
+* Sublime (Win/Linux/Mac)
+* Atom （Win/Linux/Mac）
+* TextMate (只有 Mac 平台)
+
+当然还有一些重量级工具，如
+
+* Pycharm (收费软件，注册机自行寻找)
+* Eclipse (有基于 Eclise 做的插件，随意 install 一个支持 Python 插件即可)
+
+### 编写代码
+
+在 src 目录下，新建以自己用户名的目录夹，然后以任务编号建立子目录，如下图
+
+![文件目录](/dist/images/04-struct.png)
+
+### 提交代码
+
+编写完代码并测试通过后，就可以提交代码了。你可以使用上面提到的 Git Client 提交，也可以使用命令行提交，主要用到的命令如下
+
+
+增加你操作的所有文件
+```
+git add src/${你的用户名}
 ```
 
 
-META 可以以任何形式保存，如 json, properties, ini 等，选择你最喜欢的即可，如 JSON
+Commit 到本地仓库
 
 ```
-{
-  'name': '分类名称'
-}
+git commit -m '你本次提交的说明/注释'
 ```
 
-
+Push 到远程仓库，即Github
 ```
-{
-  'name': '图书名称',
-  'cover': '封面图片地址', #你可以任意自己定义名称，在这里指明即可，如果没有说明，会尝试读取目录夹中叫 cover.png/jpg/gif 的文件
-  'author': '作者',
-  'word_count': '总字数',
-  'last_updat_time': '最后更新时间',
-  'last_update_chapter': '最后更新章节名称',
-  'desc': '小说简介',
-  'tags': '标签，以逗号或者分号间隔',
-  'chapters': [ #章节列表
-    {title: '章节标题名称1', updated_at: '更新时间', word_count: '本章节字数', id: '对应章节文件编号'}，
-    {title: '章节标题名称2', updated_at: '更新时间', word_count: '本章节字数', id: '对应章节文件编号'}
-  ]
-}
+git push
 ```
+### Pull Request
 
-## Version 2.0
+访问你自己的项目，Github 会提示你 Pull Request
 
-将文件解析至 DB
+![提示 PR](/dist/images/05-pr-01.png)
 
-## Version 3.0
+点击后，如下
 
-提供 Web 在线浏览功能
+![提示 PR](/dist/images/05-pr-03.png)
 
-## Version 4.0
+注意代码从哪里到哪里合并，最下面是具体的文件变化。没有问题，点击那个绿色的 Create pull request得到如下界面
 
-提供手机客户端
+![提示 PR](/dist/images/05-pr-04.png)
+
+默认信息是从你的 commit 信息中提取到的，你可以编辑，然后拉小伙伴来和你一起做 Code Review
+
+至少要保证一到两个人来做 Code Review 才能最后合并代码
+
+### Merge
+
+最后没问题了，就将代码合并到项目中
+
+![提示 PR](/dist/images/05-pr-05.png)
+
