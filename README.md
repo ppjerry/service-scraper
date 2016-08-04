@@ -48,6 +48,7 @@ Git for windows从这里下载
 
 如果你想专业一点，那么就打开你的 Terminal 使用 git clone 获取代码
 
+read only
 ```
 git clone git://github.com/${你的账号}/service-scraper
 ```
@@ -57,7 +58,10 @@ git clone git://github.com/${你的账号}/service-scraper
 ```
 git clone https://github.com/${你的账号}/service-scraper
 ```
-
+read and write access
+```
+git clone git@github.com:${你的账号}/service-scraper.git
+```
 ### 选择你喜欢的开发工具
 
 获取成功后，切换到 service-scraper，用你喜欢的编辑器打开它即可。推荐一些编辑器，如：
